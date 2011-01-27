@@ -1,17 +1,17 @@
 Summary:	Udev helper for naming devices per BIOS names
 Name:		biosdevname
-Version:	0.3.4
+Version:	0.3.6
 Release:	1
 License:	GPL v2
 Group:		Base
 URL:		http://linux.dell.com/files/biosdevname
 Source0:	http://linux.dell.com/files/biosdevname/permalink/%{name}-%{version}.tar.gz
-# Source0-md5:	6dfc8802a51786b9b851c0b2705312c7
-BuildRequires:	pciutils-devel
-BuildRequires:	zlib-devel
+# Source0-md5:	bb4cd43d34acb876a59052a1871f9f7a
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	pciutils-devel
+BuildRequires:	zlib-devel
 Requires:	udev-core
 # SMBIOS only exists on these arches.  It's also likely that other
 # arches don't expect the PCI bus to be sorted breadth-first, or of
@@ -29,14 +29,6 @@ the kernel name (e.g. eth0).
 %prep
 %setup -q
 
-# don't build static
-%{__sed} -i -e '/sbin_PROGRAMS/ s/src\/biosdevnameS//' src/Makefile.am
-
-# path was supposed to be configurable
-%{__sed} -i -e 's,/sbin/biosdevname,@sbindir@/biosdevname,' biosdevname.rules.in
-%{__sed} -i -e '/AC_CONFIG_FILES/ s/Makefile/& biosdevname.rules/' configure.ac
-%{__sed} -i -e '/INSTALL_DATA/ s/biosdevname.rules.in/biosdevname.rules/' Makefile.am
-
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -45,9 +37,7 @@ the kernel name (e.g. eth0).
 %{__automake}
 %configure \
 	--prefix=/ \
-	--sbindir=/lib/udev \
-	--sysconfdir=/lib \
-
+	--sbindir=/sbin
 %{__make}
 
 %install
@@ -61,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
-%attr(755,root,root) /lib/udev/%{name}
+%attr(755,root,root) /sbin/%{name}
+%attr(755,root,root) %{_sbindir}/dump_pirq
 /lib/udev/rules.d/*.rules
 %{_mandir}/man1/%{name}.1*

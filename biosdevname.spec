@@ -1,12 +1,12 @@
 Summary:	Udev helper for naming devices per BIOS names
 Name:		biosdevname
-Version:	0.3.11
+Version:	0.4.0
 Release:	1
 License:	GPL v2
 Group:		Base
 URL:		http://linux.dell.com/files/biosdevname
 Source0:	https://linux.dell.com/files/biosdevname/%{name}-%{version}/biosdevname-%{version}.tar.gz
-# Source0-md5:	22ce78f5d08cc4b1b2b8f9d28139ea5c
+# Source0-md5:	43265fd7b26dd02b171cd0c6531d93f5
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool

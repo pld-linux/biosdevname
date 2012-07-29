@@ -1,15 +1,15 @@
 Summary:	Udev helper for naming devices per BIOS names
+Summary(pl.UTF-8):	Program pomocniczy udev do nazywania urządzeń zgodnie z nazwami BIOS-u
 Name:		biosdevname
-Version:	0.4.0
+Version:	0.4.1
 Release:	1
 License:	GPL v2
 Group:		Base
-URL:		http://linux.dell.com/files/biosdevname
-Source0:	https://linux.dell.com/files/biosdevname/%{name}-%{version}/biosdevname-%{version}.tar.gz
-# Source0-md5:	43265fd7b26dd02b171cd0c6531d93f5
-BuildRequires:	autoconf
+Source0:	https://linux.dell.com/files/biosdevname/%{name}-%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	a9da18946dc50b06439818767d0a9be0
+URL:		http://linux.dell.com/files/biosdevname/
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
-BuildRequires:	libtool
 BuildRequires:	pciutils-devel
 BuildRequires:	zlib-devel
 Requires:	udev-core
@@ -26,11 +26,18 @@ necessary on systems where the BIOS name for a given device (e.g. the
 label on the chassis is "Gb1") doesn't map directly and obviously to
 the kernel name (e.g. eth0).
 
+%description -l pl.UTF-8
+biosdevname w najprostszej formie przyjmuje jako arugmnet nazwę
+urządzenia wg jądra Linuksa i zwraca, jaką ono powinno mieć nazwę
+nadaną przez BIOS. Jest to przydatne na systemach, gdzie BIOS-owa
+nazwa danego urządzenia (np. etykieta na obudowie "Gb1") nie ma
+bezpośredniego, oczywistego odwzorowania na nazwę wg jądra Linuksa
+(np. eth0).
+
 %prep
 %setup -q
 
 %build
-%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -50,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) /sbin/%{name}
-/lib/udev/rules.d/*.rules
+/lib/udev/rules.d/*-biosdevname.rules
 %{_mandir}/man1/%{name}.1*

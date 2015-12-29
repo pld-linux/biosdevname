@@ -14,9 +14,9 @@ BuildRequires:	pciutils-devel
 BuildRequires:	zlib-devel
 Requires:	udev-core
 # SMBIOS only exists on these arches.  It's also likely that other
-# arches don't expect the PCI bus to be sorted breadth-first, or of
+# arches don't expect the PCI bus to be sorted breadth-first, or if
 # so, there haven't been any comments about that on LKML.
-ExclusiveArch:	%{ix86} %{x8664} ia64
+ExclusiveArch:	%{ix86} %{x8664} x32
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

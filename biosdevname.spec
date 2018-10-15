@@ -5,6 +5,9 @@ Version:	0.7.3
 Release:	1
 License:	GPL v2
 Group:		Base
+#Source0Download: https://github.com/dell/biosdevname/releases
+#TODO: switch to named sources:
+#Source0:	https://github.com/dell/biosdevname/archive/v%{version}/%{name}-%{version}.tar.gz
 Source0:	https://github.com/dell/biosdevname/archive/v%{version}.tar.gz
 # Source0-md5:	e7e76fd8e4b72e7364b10655a9e5f716
 URL:		https://github.com/dell/biosdevname
@@ -49,6 +52,7 @@ bezpośredniego, oczywistego odwzorowania na nazwę wg jądra Linuksa
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install install-data \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -57,7 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
-%attr(755,root,root) /sbin/%{name}
+%doc AUTHORS README TODO
+%attr(755,root,root) /sbin/biosdevname
 /lib/udev/rules.d/*-biosdevname.rules
-%{_mandir}/man1/%{name}.1*
+%{_mandir}/man1/biosdevname.1*

@@ -1,13 +1,13 @@
 Summary:	Udev helper for naming devices per BIOS names
 Summary(pl.UTF-8):	Program pomocniczy udev do nazywania urządzeń zgodnie z nazwami BIOS-u
 Name:		biosdevname
-Version:	0.7.2
+Version:	0.7.3
 Release:	1
 License:	GPL v2
 Group:		Base
-Source0:	http://linux.dell.com/files/biosdevname/%{name}-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	3baeaa28bffb8128331a4f3715db27dd
-URL:		http://linux.dell.com/files/biosdevname/
+Source0:	https://github.com/dell/biosdevname/archive/v%{version}.tar.gz
+# Source0-md5:	e7e76fd8e4b72e7364b10655a9e5f716
+URL:		https://github.com/dell/biosdevname
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	pciutils-devel
